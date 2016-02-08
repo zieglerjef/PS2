@@ -147,44 +147,11 @@ print.benfords(x4)
 
 
 print.benfords2 <- function(x){
-  # run violations function on input
-  testStat <- violations(x)
-  
-  # create significance asterisk's
-  # create empty vectors
-  alphaM <- NULL
-  alphaD<- NULL
-  
-  # fill in asterisks if critical value is large enough
-  if(testStat$mStat <= 0.851){alphaM <- "Not significant!"}
-  if(testStat$mStat > 0.851){alphaM <- "*"}
-  if(testStat$mStat > 0.967){alphaM <- "**"}
-  if(testStat$mStat > 1.212){alphaM <- "***"}
-  
-  if(testStat$dStat <= 1.212){alphaD <- "Not significant!"}
-  if(testStat$dStat > 1.212){alphaD <- "*"}
-  if(testStat$dStat > 1.330){alphaD <- "**"}
-  if(testStat$dStat > 1.569){alphaD <- "***"}
-  
-  # print:
-  # - critical value
-  # - test statistic name
-  # - how stat was calculated
-  # - significance
-  
-  cat("\n Critical Values \n")
-  
-  print(data.frame("Statistic"=c("Leemis' m", "Cho-Gains' d"),
-                   "Value"=c(testStat$mStat, testStat$dStat),
-                   "Alpha"=c(alphaM, alphaD),
-                   "Calculation"=c("max(freq - log10(1+1/1:9))", "sqrt(sum((freq - log10(1+1/1:9)^2)))")))
-  
-  # print legend explanation
-  cat("\n Note: p < 0.1^{*}; p < 0.05^{**}; p < 0.01^{***} \n")
+  # re-run print.benfords() function
+  print.benfords(x)
   
   # export function output to csv file
   sink("exportTable.csv", append=TRUE)
-  
 }
 
 # set working directory and execute function

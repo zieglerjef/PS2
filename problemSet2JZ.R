@@ -92,6 +92,7 @@ violations(x4, m=F, d=F)
 ### Critical values ###
 #######################
 
+# create function
 print.benfords <- function(x){
   # run violations function on input
   testStat <- violations(x)

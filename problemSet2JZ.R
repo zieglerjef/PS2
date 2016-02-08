@@ -78,7 +78,7 @@ violations(x3, m=F, d=T)
 x4 <- matrix(sample(1:99, size=20, replace=T),
              ncol=2)
 # m=T, d=T
-y <- violations(x4, m=T, d=T)
+violations(x4, m=T, d=T)
 # m=F, d=F
 violations(x4, m=F, d=F)
 

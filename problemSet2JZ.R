@@ -29,9 +29,11 @@ violations <- function(x, m=TRUE, d=TRUE){
   dStat <- sqrt(sum(newData^2))
   
   # create print options
+  # throw error for lack of test statistic 
   if(m==FALSE & d==FALSE){
     cat("\n Choose a test statistic! \n")
   }
+  # only m stat
   if(m==TRUE & d==FALSE){
     cat("\n Table of Proportions: \n")
     print(freq)
@@ -39,6 +41,7 @@ violations <- function(x, m=TRUE, d=TRUE){
     print(mStat)
     invisible(list("mStat" = mStat))
   }
+  # only d stat
   if(m==FALSE & d==TRUE){
     cat("\n Table of Proportions: \n")
     print(freq)
@@ -46,6 +49,7 @@ violations <- function(x, m=TRUE, d=TRUE){
     print(dStat)
     invisible(list("dStat" = dStat))
   }
+  # both d and m stat
   if(m==TRUE & d==TRUE){
     cat("\n Table of Proportions: \n")
     print(freq)
@@ -98,11 +102,13 @@ print.benfords <- function(x){
   alphaD<- NULL
   
   # fill in asterisks if critical value is large enough
+  # mStat
   if(testStat$mStat <= 0.851){alphaM <- "Not significant!"}
   if(testStat$mStat > 0.851){alphaM <- "*"}
   if(testStat$mStat > 0.967){alphaM <- "**"}
   if(testStat$mStat > 1.212){alphaM <- "***"}
   
+  # dStat
   if(testStat$dStat <= 1.212){alphaD <- "Not significant!"}
   if(testStat$dStat > 1.212){alphaD <- "*"}
   if(testStat$dStat > 1.330){alphaD <- "**"}
@@ -113,13 +119,13 @@ print.benfords <- function(x){
   # - test statistic name
   # - how stat was calculated
   # - significance
+  # table label
   cat("\n Critical Values \n")
-  
+  # table data
   print(data.frame("Statistic"=c("Leemis' m", "Cho-Gains' d"),
                    "Value"=c(testStat$mStat, testStat$dStat),
                    "Alpha"=c(alphaM, alphaD),
                    "Calculation"=c("max(freq - log10(1+1/1:9))", "sqrt(sum((freq - log10(1+1/1:9)^2)))")))
-                                                        
   # print legend explanation
   cat("\n Note: p < 0.1^{*}; p < 0.05^{**}; p < 0.01^{***} \n")
 }
@@ -145,7 +151,7 @@ print.benfords(x4)
 ### Export critical values ###
 ##############################
 
-
+# export data from print.benfords function
 print.benfords2 <- function(x){
   # re-run print.benfords() function
   print.benfords(x)
@@ -154,6 +160,7 @@ print.benfords2 <- function(x){
   sink("exportTable.csv", append=TRUE)
 }
 
-# set working directory and execute function
+# set working directory
 setwd("~/Google Drive/WashU/Spring2016/appliedStats")
+# execute function
 print.benfords2(x2)

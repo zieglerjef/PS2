@@ -13,7 +13,7 @@
 violations <- function(x, m=TRUE, d=TRUE){
   # check input type
   if(!(is.integer(as.vector(x)) | is.numeric(as.vector(x)))){
-    stop("Input must be integers or numeric!")}
+    stop("Input must be integer or numeric!")}
   # take in matrix or vector of only significant digits
   newVec <- substr(as.vector(x),1,1)
   # generate vector of zeroes for #s 1-9

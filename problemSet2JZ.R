@@ -5,7 +5,6 @@
 # Create function that:
 # - takes in vector or matrix
 # - controls test statistic ouput
-# - output also contains full digit distribution
 # Extra:
 # - accomodates any input length
 # - throws error if input non-integer or numeric
@@ -154,11 +153,12 @@ print.benfords(x4)
 
 # export data from print.benfords function
 print.benfords2 <- function(x){
+  # export function output to csv file
+  sink("exportTable.csv", append=TRUE)
   # re-run print.benfords() function
   print.benfords(x)
   
-  # export function output to csv file
-  sink("exportTable.csv", append=TRUE)
+  sink()
 }
 
 # set working directory

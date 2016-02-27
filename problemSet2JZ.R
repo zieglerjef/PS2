@@ -152,16 +152,14 @@ print.benfords(x4)
 ##############################
 
 # export data from print.benfords function
-print.benfords2 <- function(x){
+print.benfords2 <- function(destination=NULL, filename = NULL, x){
   # export function output to csv file
-  sink("exportTable.csv", append=TRUE)
+  sink(file=paste(destination, filename, sep=""), append=TRUE)
   # re-run print.benfords() function
   print.benfords(x)
   
   sink()
 }
 
-# set working directory
-setwd("~/Google Drive/WashU/Spring2016/appliedStats")
 # execute function
-print.benfords2(x2)
+print.benfords2(destination="~/Google Drive/WashU/Spring2016/appliedStats", filename="exportTable.csv", x2)
